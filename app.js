@@ -18,6 +18,31 @@ document.addEventListener("DOMContentLoaded", event => {
       document.querySelector("textarea").value = "";
     }
   });
+
+  let bipEvent = null;
+  window.addEventListener("beforeinstallprompt", event => {
+    event.preventDefault();
+    bipEvent = event;
+  })
+
+  document.querySelector("#btnInstall").addEventListener("click", event => {
+    if (bipEvent) {
+      bipEvent.prompt();
+    } else {
+      alert("Pour installer l'application, cherchez Ajouter à l'écran d'accueil ou Installer dans le menu de votre navigateur");
+    }
+  })
+
+  document.querySelector("#btnShare").addEventListener("click", event => {
+    let notesString = "";
+    for (let note of notes) {
+      notesString += note + " | "
+    }
+    navigator.share({
+      title: "YNotes",
+      text: notesString
+    })
+  })
 })
 
 function renderNotes() {
