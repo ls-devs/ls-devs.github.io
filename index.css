@@ -1,10 +1,10 @@
 body {
     --color-back: white;
     --color-title: white;
-    --color-text: white;
+    --color-text: #1d1d1e;
     --color-theme: #23B2A4;
     --color-icon-front: #1d1d1e;
-    --color-toolbar-button: white;
+    --color-toolbar-button: #1d1d1e;
 }
 
 @font-face {
@@ -109,4 +109,17 @@ body>#toolbar {
     margin: 0;
     width: 100%;
     background-color: var(--color-theme);
+}
+
+@media (display-mode: standalone), (display-mode: minimal-ui) {
+    body>#toolbar {
+        padding: env(safe-area-inset-top) 
+            env(safe-area-inset-right) 
+            env(safe-area-inset-bottom) 
+            env(safe-area-inset-left) !important;
+    }
+
+    #itemInstall {
+        display: none;
+    }
 }
