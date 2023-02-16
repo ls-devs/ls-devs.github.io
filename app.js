@@ -1,5 +1,6 @@
 var notes = [];
 import { initializeFirebase } from "./push-notification";
+initializeFirebase();
 
 document.addEventListener("DOMContentLoaded", () => {
   if (localStorage.getItem("notes")) {
