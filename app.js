@@ -1,12 +1,13 @@
 var notes = [];
+import { initializeFirebase } from "./push-notification";
 
-document.addEventListener("DOMContentLoaded", event => {
+document.addEventListener("DOMContentLoaded", () => {
   if (localStorage.getItem("notes")) {
     notes = JSON.parse(localStorage.getItem("notes"));
   }
   renderNotes();
 
-  document.querySelector("form").addEventListener("submit", event => {
+  document.querySelector("form").addEventListener("submit", (event) => {
     event.preventDefault();
     const note = document.querySelector("textarea").value;
     if (note.length == 0) {
@@ -20,30 +21,32 @@ document.addEventListener("DOMContentLoaded", event => {
   });
 
   let bipEvent = null;
-  window.addEventListener("beforeinstallprompt", event => {
+  window.addEventListener("beforeinstallprompt", (event) => {
     event.preventDefault();
     bipEvent = event;
-  })
+  });
 
-  document.querySelector("#btnInstall").addEventListener("click", event => {
+  document.querySelector("#btnInstall").addEventListener("click", () => {
     if (bipEvent) {
       bipEvent.prompt();
     } else {
-      alert("Pour installer l'application, cherchez Ajouter à l'écran d'accueil ou Installer dans le menu de votre navigateur");
+      alert(
+        "Pour installer l'application, cherchez Ajouter à l'écran d'accueil ou Installer dans le menu de votre navigateur"
+      );
     }
-  })
+  });
 
-  document.querySelector("#btnShare").addEventListener("click", event => {
+  document.querySelector("#btnShare").addEventListener("click", () => {
     let notesString = "";
     for (let note of notes) {
-      notesString += note + " | "
+      notesString += note + " | ";
     }
     navigator.share({
       title: "YNotes",
-      text: notesString
-    })
-  })
-})
+      text: notesString,
+    });
+  });
+});
 
 function renderNotes() {
   const ul = document.querySelector("#notes");
@@ -53,7 +56,7 @@ function renderNotes() {
     li.innerHTML = note;
     const deleteButton = document.createElement("div");
     deleteButton.innerHTML = '<span class="icon">supprimer</span>';
-    deleteButton.addEventListener("click", event => {
+    deleteButton.addEventListener("click", () => {
       if (confirm("Voulez-vous vraiment supprimer cette note ?")) {
         notes.splice(index, 1);
         renderNotes();
@@ -62,7 +65,7 @@ function renderNotes() {
     });
     li.appendChild(deleteButton);
     ul.appendChild(li);
-  })
+  });
 }
 
 function save() {
@@ -70,23 +73,23 @@ function save() {
 }
 
 function randomNotification() {
-  const randomItem = Math.floor(Math.random() * games.length);
-  const notifTitle = games[randomItem].name;
-  const notifBody = `Created by ${games[randomItem].author}.`;
-  const notifImg = `data/img/${games[randomItem].slug}.jpg`;
-  const options = {
-    body: notifBody,
-    icon: notifImg,
-  };
-  new Notification(notifTitle, options);
-  setTimeout(randomNotification, 30000);
+  // const randomItem = Math.floor(Math.random() * games.length);
+  // const notifTitle = games[randomItem].name;
+  // const notifBody = `Created by ${games[randomItem].author}.`;
+  // const notifImg = `data/img/${games[randomItem].slug}.jpg`;
+  // const options = {
+  //   body: notifBody,
+  //   icon: notifImg,
+  // };
+  // new Notification(notifTitle, options);
+  // setTimeout(randomNotification, 30000);
 }
 
-const button = document.getElementById('btnInstall');
-button.addEventListener('click', () => {
+const button = document.getElementById("btnInstall");
+button.addEventListener("click", () => {
   Notification.requestPermission().then((result) => {
-    if (result === 'granted') {
+    if (result === "granted") {
       randomNotification();
     }
   });
-})
+});

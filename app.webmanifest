@@ -1,34 +1,34 @@
 {
-    "name": "Ynov Notes",
-    "short_name": "YNotes",
-    "start_url": "./?utm_source=pwa",
-    "theme_color": "#23b2a4",
-    "scope": "./",
-    "display": "standalone",
-    "icons": [
-        {
-            "src": "icons/icon-512.png",
-            "sizes": "512x512",
-            "type": "image/png"
-        },
-        {
-            "src": "icons/icon-1024.png",
-            "sizes": "1024x1024",
-            "type": "image/png"
-        },
-        {
-            "src": "icons/icon-maskable.png",
-            "sizes": "512x512",
-            "type": "image/png",
-            "purpose": "maskable"
-        }
-    ],
-    "description": "Cette application vous permet de prendre des notes",
-    "screenshots": [
-        {
-            "src": "icons/screenshot.png",
-            "sizes": "1170x2532",
-            "type": "image/png"
-        }
-    ]
+  "name": "Ynov Notes",
+  "short_name": "YNotes",
+  "start_url": "./?utm_source=pwa",
+  "theme_color": "#23b2a4",
+  "scope": "./",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-1024.png",
+      "sizes": "1024x1024",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "description": "Cette application vous permet de prendre des notes",
+  "screenshots": [
+    {
+      "src": "icons/screenshot.png",
+      "sizes": "1170x2532",
+      "type": "image/png"
+    }
+  ]
 }
